@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const oswald = Oswald({ subsets: ['latin'], variable: '--font-oswald' });
 
 export const metadata: Metadata = {
-  title: 'DRAS Remodeling Services',
+  title: "O'dara Trade Group - Remodeling & Renovation Experts",
   description: 'Expert renovation and remodeling services for kitchens, bathrooms and full home renovations.'
 };
 
