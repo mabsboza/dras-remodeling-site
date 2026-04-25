@@ -5,7 +5,6 @@ import { FaFacebookF, FaInstagram } from "react-icons/fa";
 export default function Footer() {
   return (
     <footer className="bg-[#101114] text-white/70 border-t border-white/10">
-      <FaFacebookF className="text-xl" />
       {/* Main Footer */}
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-10 md:grid-cols-4">
