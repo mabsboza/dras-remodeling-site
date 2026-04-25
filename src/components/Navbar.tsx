@@ -14,7 +14,7 @@ const links = [
 
 function BrandLogo() {
   return (
-    <div className="flex flex-col leading-none scale-120 origin-left pl-4 md:pl-8">
+    <div className="flex flex-col leading-none origin-left scale-95 md:scale-100">
       <div className="flex items-end gap-2">
         <span
           className="
@@ -110,19 +110,23 @@ export default function Navbar() {
     >
       <nav
         className="
-          w-full
-          px-4
-          md:pl-0
-          md:pr-8
-          h-25
-          md:h-25
-          flex
-          items-center
-          justify-between
-        "
+        w-full
+        h-24
+        flex
+        items-center
+        justify-between
+        pl-2
+        pr-4
+        md:pl-3
+        md:pr-8
+      "
       >
         {/* LOGO */}
-        <Link href="/" onClick={closeMenu} className="group">
+        <Link
+          href="/"
+          onClick={closeMenu}
+          className="group shrink-0 mr-auto"
+        >
           <div
             className="
               rounded-md
@@ -131,10 +135,10 @@ export default function Navbar() {
               bg-gradient-to-r
               from-[#111217]
               to-[#1a0b0b]
-              px-3
-              py-3
-              md:px-4
-              md:py-3
+              px-2
+              py-2
+              md:px-3
+              md:py-2
               shadow-[0_0_25px_rgba(185,28,28,.35)]
               group-hover:shadow-[0_0_35px_rgba(212,166,74,.55)]
               transition
@@ -145,7 +149,7 @@ export default function Navbar() {
         </Link>
 
         {/* DESKTOP NAV LINKS */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-9 ml-auto mr-8">
           {links.map(([label, href]) => (
             <Link
               key={href}
@@ -179,7 +183,8 @@ export default function Navbar() {
           href="/contact"
           className="
             hidden
-            sm:inline-flex
+            md:inline-flex
+            shrink-0
             bg-gradient-to-r
             from-[#c98d2d]
             to-[#e0b35a]

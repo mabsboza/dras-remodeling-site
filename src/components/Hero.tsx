@@ -41,13 +41,24 @@ export default function Hero() {
   const prevSlide = () =>
     setCurrent(current === 0 ? slides.length - 1 : current - 1);
 
-  const nextSlide = () =>
-    setCurrent((current + 1) % slides.length);
+  const nextSlide = () => setCurrent((current + 1) % slides.length);
 
   return (
     <section
       id="home"
-      className="relative min-h-[850px] pt-24 flex items-center overflow-hidden"
+      className="
+        relative
+        min-h-[860px]
+        sm:min-h-[780px]
+        lg:min-h-[850px]
+        pt-32
+        sm:pt-32
+        flex
+        items-start
+        sm:items-center
+        overflow-hidden
+        pb-28
+        "
     >
       {/* Background Slider */}
       {slides.map((slide, index) => (
@@ -64,100 +75,135 @@ export default function Hero() {
             alt=""
             fill
             priority
-            className="object-cover"
+            sizes="100vw"
+            className="object-cover object-center"
           />
         </div>
       ))}
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/45" />
+      <div className="absolute inset-0 bg-black/55 sm:bg-black/50 lg:bg-black/45" />
 
-      <div className="relative mx-auto max-w-7xl w-full px-6">
+      <div className="relative mx-auto max-w-7xl w-full px-5 sm:px-6 lg:px-10">
         <div className="grid lg:grid-cols-[1.05fr_.95fr] items-center">
-
           {/* Left Content */}
           <div className="text-white max-w-3xl">
-
-            <p className="
-              uppercase
-              tracking-[.28em]
-              font-semibold
-              text-[#d4a64a]
-              text-sm
-              mb-5
-            ">
+            <p
+              className="
+                uppercase
+                tracking-[.18em]
+                sm:tracking-[.28em]
+                font-semibold
+                text-[#d4a64a]
+                text-xs
+                sm:text-sm
+                mb-4
+                sm:mb-5
+              "
+            >
               Expert Renovation & Remodeling Services
             </p>
 
-            <h1 className="
-              font-display
-              uppercase
-              leading-[0.92]
-              tracking-tight
-              text-6xl
-              md:text-8xl
-              font-black
-              drop-shadow-2xl
-            ">
+            <h1
+              className="
+                font-display
+                uppercase
+                leading-[0.95]
+                tracking-tight
+                text-4xl
+                sm:text-6xl
+                md:text-8xl
+                font-black
+                drop-shadow-2xl
+              "
+            >
               Building Your <br />
               Dream Space
             </h1>
 
-            <p className="
-              mt-7
-              ml-12
-              text-xl
-              max-w-2xl
-              text-white/90
-              leading-relaxed
-            ">
+            <p
+              className="
+                mt-6
+                sm:mt-7
+                ml-0
+                sm:ml-6
+                lg:ml-12
+                text-base
+                sm:text-lg
+                lg:text-xl
+                max-w-2xl
+                text-white/90
+                leading-relaxed
+              "
+            >
               Premium kitchens, bathrooms and complete home renovations
               delivered with craftsmanship, transparent pricing and trusted
               execution.
             </p>
 
             {/* Feature Bar */}
-            <div className="
-              mt-8
-              inline-flex
-              flex-wrap
-              overflow-hidden
-              bg-[#0d1015]/95
-              border border-white/10
-              shadow-[0_10px_35px_rgba(0,0,0,.45)]
-            ">
+            <div
+              className="
+                mt-7
+                sm:mt-8
+                grid
+                grid-cols-1
+                sm:grid-cols-3
+                w-full
+                sm:w-fit
+                overflow-hidden
+                bg-[#0d1015]/95
+                border
+                border-white/10
+                shadow-[0_10px_35px_rgba(0,0,0,.45)]
+              "
+            >
               {features.map((item, index) => (
                 <div
                   key={item.title}
                   className={`
-                    flex items-center gap-4
-                    px-6 py-5
-                    ${index !== features.length - 1
-                      ? "border-r border-white/10"
-                      : ""}
+                    flex
+                    items-center
+                    gap-3
+                    sm:gap-4
+                    px-5
+                    sm:px-6
+                    py-4
+                    sm:py-5
+                    ${
+                      index !== features.length - 1
+                        ? "border-b sm:border-b-0 sm:border-r border-white/10"
+                        : ""
+                    }
                   `}
                 >
                   <FeatureIcon type={item.icon} />
 
                   <div>
-                    <div className="
-                      uppercase
-                      text-white
-                      font-bold
-                      text-lg
-                      leading-none
-                    ">
+                    <div
+                      className="
+                        uppercase
+                        text-white
+                        font-bold
+                        text-base
+                        sm:text-lg
+                        leading-none
+                      "
+                    >
                       {item.title}
                     </div>
 
-                    <div className="
-                      mt-1
-                      uppercase
-                      text-[#d4a64a]
-                      font-semibold
-                      text-lg
-                      leading-none
-                    ">
+                    <div
+                      className="
+                        mt-1
+                        uppercase
+                        text-[#d4a64a]
+                        font-semibold
+                        text-base
+                        sm:text-lg
+                        leading-none
+                      "
+                    >
                       {item.subtitle}
                     </div>
                   </div>
@@ -166,8 +212,7 @@ export default function Hero() {
             </div>
 
             {/* CTA Buttons */}
-            <div className="mt-10 flex flex-wrap gap-5">
-
+            <div className="mt-10 sm:mt-10 mb-20 sm:mb-0 flex flex-col sm:flex-row gap-4 sm:gap-5">
               <a
                 href="/services"
                 className="
@@ -177,8 +222,14 @@ export default function Hero() {
                   font-black
                   uppercase
                   tracking-wide
-                  px-10 py-5
-                  flex items-center gap-4
+                  px-7
+                  sm:px-10
+                  py-4
+                  sm:py-5
+                  flex
+                  items-center
+                  justify-center
+                  gap-4
                   transition
                 "
               >
@@ -189,13 +240,20 @@ export default function Hero() {
               <a
                 href="#portfolio"
                 className="
-                  border border-white/40
+                  border
+                  border-white/40
                   text-white
                   uppercase
                   font-black
                   tracking-wide
-                  px-10 py-5
-                  flex items-center gap-4
+                  px-7
+                  sm:px-10
+                  py-4
+                  sm:py-5
+                  flex
+                  items-center
+                  justify-center
+                  gap-4
                   hover:bg-white
                   hover:text-black
                   transition
@@ -204,112 +262,124 @@ export default function Hero() {
                 View Our Work
                 <span className="text-2xl">›</span>
               </a>
-
             </div>
           </div>
         </div>
 
-
         {/* Slider Dots */}
-        <div className="
-          absolute
-          bottom-10
-          left-1/2
-          -translate-x-1/2
-          flex gap-4
-        ">
+        <div
+          className="
+            absolute
+            bottom-6
+            sm:bottom-10
+            left-1/2
+            -translate-x-1/2
+            flex
+            gap-3
+            sm:gap-4
+          "
+        >
           {slides.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
+              aria-label={`Go to slide ${i + 1}`}
               className={`
-                h-3 w-3 rounded-full transition
-                ${current === i
-                  ? "bg-[#d4a64a] scale-125"
-                  : "bg-white/70"}
+                h-3
+                w-3
+                rounded-full
+                transition
+                ${current === i ? "bg-[#d4a64a] scale-125" : "bg-white/70"}
               `}
             />
           ))}
         </div>
 
-
-        {/* Left Arrow */}
         {/* Left Arrow */}
         <button
-          onClick={() =>
-            setCurrent(
-              current === 0
-                ? slides.length - 1
-                : current - 1
-            )
-          }
+          onClick={prevSlide}
+          aria-label="Previous slide"
           className="
             absolute
-            left-10
-            md:left-1
+            left-3
+            sm:left-5
             lg:left-1
             top-[52%]
             -translate-y-1/2
-            w-16
-            h-16
-            bg-black/70
+            w-10
+            h-10
+            sm:w-14
+            sm:h-14
+            lg:w-16
+            lg:h-16
+            bg-black/60
             backdrop-blur-sm
-            border border-white/10
+            border
+            border-white/10
             text-white
-            text-5xl
-            flex items-center justify-center
+            text-3xl
+            sm:text-4xl
+            lg:text-5xl
+            flex
+            items-center
+            justify-center
             hover:bg-[#d4a64a]
             hover:text-black
             transition
             z-30
-"
+          "
         >
           ‹
         </button>
 
-
         {/* Right Arrow */}
         <button
-          onClick={() =>
-            setCurrent(
-              (current + 1) % slides.length
-            )
-          }
+          onClick={nextSlide}
+          aria-label="Next slide"
           className="
             absolute
-            right-10
-            md:right-16
+            right-3
+            sm:right-5
             lg:right-20
             top-[52%]
             -translate-y-1/2
-            w-16
-            h-16
-            bg-black/70
+            w-10
+            h-10
+            sm:w-14
+            sm:h-14
+            lg:w-16
+            lg:h-16
+            bg-black/60
             backdrop-blur-sm
-            border border-white/10
+            border
+            border-white/10
             text-white
-            text-5xl
-            flex items-center justify-center
+            text-3xl
+            sm:text-4xl
+            lg:text-5xl
+            flex
+            items-center
+            justify-center
             hover:bg-[#d4a64a]
             hover:text-black
             transition
             z-30
-            "
+          "
         >
           ›
         </button>
-
       </div>
     </section>
   );
 }
 
-
 function FeatureIcon({ type }: { type: string }) {
+  const iconClass = "w-7 h-7 sm:w-8 sm:h-8 text-[#d4a64a] shrink-0";
+
   if (type === "shield") {
     return (
       <svg
-        className="w-8 h-8 text-[#d4a64a]"
+        className={iconClass}
         fill="none"
         stroke="currentColor"
         strokeWidth="1.8"
@@ -327,7 +397,7 @@ function FeatureIcon({ type }: { type: string }) {
   if (type === "award") {
     return (
       <svg
-        className="w-8 h-8 text-[#d4a64a]"
+        className={iconClass}
         fill="none"
         stroke="currentColor"
         strokeWidth="1.8"
@@ -341,7 +411,7 @@ function FeatureIcon({ type }: { type: string }) {
 
   return (
     <svg
-      className="w-8 h-8 text-[#d4a64a]"
+      className={iconClass}
       fill="none"
       stroke="currentColor"
       strokeWidth="1.8"

@@ -1,23 +1,23 @@
 const items = [
   {
-    icon:"document",
-    title:"Transparent",
-    subtitle:"Pricing",
+    icon:"shield",
+    title:"Licensed",
+    subtitle:"& Insured",
   },
   {
-    icon: "document",
-    title: "Transparent",
-    subtitle: "Pricing",
+    icon:"receipt",
+    title:"Transparent",
+    subtitle:"Pricing",
   },
   {
     icon:"star",
     title:"5-Star",
     subtitle:"Client Reviews",
-   },
+  },
   {
-    icon: "briefcase",
-    title: "On-Time &",
-    subtitle: "On-Budget",
+    icon:"clock",
+    title:"On-Time &",
+    subtitle:"On-Budget",
   },
 ];
 
@@ -59,39 +59,88 @@ export default function TrustPanel() {
 function TrustIcon({ type }: { type: string }) {
   const className = "w-12 h-12 text-[#d4a64a]";
 
-  if (type === "person") {
-    return (
-      <svg className={className} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <circle cx="12" cy="7" r="4" />
-        <path d="M4 21a8 8 0 0116 0" />
-      </svg>
-    );
-  }
-
-  if (type === "document") {
-    return (
-      <svg className={className} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path d="M6 3h9l3 3v15H6z" />
-        <path d="M15 3v4h4" />
-        <path d="M9 11h6M9 15h4" />
-      </svg>
-    );
-  }
-
+  // Licensed & Insured
   if (type === "shield") {
     return (
-      <svg className={className} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-3z" />
-        <path d="M9 12l2 2 4-5" />
+      <svg
+        className={className}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-3z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M9.5 12l1.8 1.8L15 10"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     );
   }
 
-  return (
-    <svg className={className} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-      <path d="M9 6V4h6v2" />
-      <rect x="4" y="6" width="16" height="14" rx="2" />
-      <path d="M4 12h16" />
-    </svg>
-  );
+  // Transparent Pricing
+  if (type === "receipt") {
+    return (
+      <svg
+        className={className}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7 3l1.5 1.5L10 3l1.5 1.5L13 3l1.5 1.5L16 3v18l-2-1.5L12 21l-2-1.5L8 21l-1-1V3z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path d="M9 9h6M9 13h4" />
+      </svg>
+    );
+  }
+
+  // Reviews
+  if (type === "star") {
+    return (
+      <svg
+        className={className}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 3l2.6 5.3 5.9.8-4.3 4.1 1 5.8L12 16.9 6.8 19l1-5.8L3.5 9.1l5.9-.8L12 3z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  }
+
+  // On-Time & On-Budget
+  if (type === "clock") {
+    return (
+      <svg
+        className={className}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        viewBox="0 0 24 24"
+      >
+        <circle cx="12" cy="12" r="8" />
+        <path
+          d="M12 8v4l3 2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  }
+
+  return null;
 }
