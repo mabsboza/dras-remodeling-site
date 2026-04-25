@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
-import { Facebook, Instagram } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -141,7 +140,6 @@ export default function Footer() {
                   transition
                 "
               >
-                <Facebook size={20} />
               </a>
 
               <a
@@ -158,7 +156,6 @@ export default function Footer() {
                   transition
                 "
               >
-                <Instagram size={20} />
               </a>
             </div>
           </div>
