@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { site } from "@/lib/site";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
   return (
     <footer className="bg-[#101114] text-white/70 border-t border-white/10">
-
+      <FaFacebookF className="text-xl" />
       {/* Main Footer */}
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-10 md:grid-cols-4">
@@ -126,37 +127,43 @@ export default function Footer() {
             <div className="w-24 h-px bg-[#d4a64a] my-5" />
 
             <div className="flex items-center gap-8">
-              <a
-                href="https://www.facebook.com/yuimaginewemake"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                  w-12 h-12
-                  rounded-full
-                  border border-white/20
-                  flex items-center justify-center
-                  hover:border-[#d4a64a]
-                  hover:text-[#d4a64a]
-                  transition
-                "
-              >
-              </a>
+            <a
+              href="https://www.facebook.com/yuimaginewemake"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="
+                w-12 h-12
+                rounded-full
+                border border-white/20
+                flex items-center justify-center
+                text-white
+                hover:border-[#d4a64a]
+                hover:text-[#d4a64a]
+                transition
+              "
+            >
+              <FaFacebookF className="text-xl" />
+            </a>
 
-              <a
-                href="https://www.instagram.com/odaratradegroup/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                  w-12 h-12
-                  rounded-full
-                  border border-white/20
-                  flex items-center justify-center
-                  hover:border-[#d4a64a]
-                  hover:text-[#d4a64a]
-                  transition
-                "
-              >
-              </a>
+            <a
+              href="https://www.instagram.com/odaratradegroup/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="
+                w-12 h-12
+                rounded-full
+                border border-white/20
+                flex items-center justify-center
+                text-white
+                hover:border-[#d4a64a]
+                hover:text-[#d4a64a]
+                transition
+              "
+            >
+              <FaInstagram className="text-xl" />
+            </a>
             </div>
           </div>
 
