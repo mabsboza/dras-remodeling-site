@@ -110,16 +110,16 @@ export default function Navbar() {
     >
       <nav
         className="
-        w-full
-        h-24
-        flex
-        items-center
-        justify-between
-        pl-2
-        pr-4
-        md:pl-3
-        md:pr-8
-      "
+          w-full
+          h-24
+          flex
+          items-center
+          justify-between
+          pl-0
+          pr-4
+          md:pl-0
+          md:pr-8
+        "
       >
         {/* LOGO */}
         <Link
