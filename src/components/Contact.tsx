@@ -1,4 +1,5 @@
 import { site } from '@/lib/site';
+import { FaWhatsapp } from 'react-icons/fa';
 
 export default function Contact() {
   return (
@@ -8,7 +9,28 @@ export default function Contact() {
           <p className="kicker">Get In Touch</p>
           <h2 className="font-display text-5xl md:text-6xl uppercase mt-3">Ready To Transform Your Home?</h2>
           <p className="mt-6 text-white/70 leading-7">Send your project details and the team will contact you to schedule a consultation.</p>
-          <div className="mt-8 space-y-4 text-sm text-white/80"><p>☎ {site.phone}</p><p>✉ {site.email}</p><p>⌖ {site.address}</p></div>
+          <div className="mt-8 space-y-4 text-xl text-white/80"><p>☎ {site.phone}</p><p>✉ {site.email}</p><p>⌖ {site.address}</p></div>
+          <div className="mt-5 space-y-4">
+          <a
+            href="https://wa.me/16788328593"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+              inline-flex items-center gap-3
+              rounded-full
+              bg-[#25D366]
+              px-7 py-3
+              font-semibold
+              text-white
+              hover:scale-105
+              transition
+              shadow-lg
+            "
+          >
+            <FaWhatsapp className="text-2xl" />
+            Chat on WhatsApp
+          </a>
+            </div>
         </div>
         <form action="/api/contact" method="POST" className="bg-white text-charcoal p-8 shadow-soft grid gap-4">
           <div className="grid md:grid-cols-2 gap-4"><input required name="name" placeholder="Full Name" className="border border-smoke px-4 py-3"/><input required name="email" type="email" placeholder="Email" className="border border-smoke px-4 py-3"/></div>
