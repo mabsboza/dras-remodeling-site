@@ -31,14 +31,15 @@ export default function TrustPanel() {
             <div
               key={item.title}
               className={`
-                flex items-center justify-center gap-6
-                py-8
+                flex items-center justify-start gap-5
+                py-7 px-6
+                max-w-[260px] w-full mx-auto
                 ${index !== items.length - 1 ? "md:border-r md:border-zinc-200" : ""}
               `}
             >
               <TrustIcon type={item.icon} />
 
-              <div>
+              <div className="min-w-[150px] text-left">
                 <div className="text-lg font-semibold text-[#111217]">
                   {item.title}
                 </div>
