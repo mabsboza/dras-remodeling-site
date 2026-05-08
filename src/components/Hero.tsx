@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const slides = [
-  "/images/hero/hero1.png",
-  "/images/hero/hero2.png",
-  "/images/hero/hero3.png",
+  "/images/hero/hero1.webp",
+  "/images/hero/hero2.webp",
+  "/images/hero/hero3.webp",
 ];
 
 const features = [
@@ -74,7 +74,7 @@ export default function Hero() {
             src={slide}
             alt=""
             fill
-            priority
+            priority={index === 0}
             sizes="100vw"
             className="object-cover object-center"
           />

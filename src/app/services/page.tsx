@@ -29,7 +29,7 @@ export default function ServicesPage() {
             {services.map((service) => (
               <article key={service.slug} className="card overflow-hidden group">
                 <div className="relative h-48">
-                  <Image src={service.image} alt={service.title} fill className="object-cover group-hover:scale-105 transition duration-500" />
+                  <Image src={service.image} alt={service.title} fill sizes="(min-width: 768px) 25vw, 100vw" className="object-cover group-hover:scale-105 transition duration-500" />
                 </div>
                 <div className="p-6">
                   <h3 className="font-display text-2xl uppercase text-charcoal">{service.title}</h3>
@@ -57,7 +57,7 @@ export default function ServicesPage() {
             {featuredProjects.map((project) => (
               <article key={project.id} className="card grid md:grid-cols-[220px_1fr] overflow-hidden">
                 <div className="relative min-h-64 md:min-h-full">
-                  <Image src={project.image} alt={project.title} fill className="object-cover" />
+                  <Image src={project.image} alt={project.title} fill sizes="(min-width: 768px) 220px, 100vw" className="object-cover" />
                   <span className="absolute left-4 top-4 bg-charcoal text-white text-[10px] font-bold uppercase tracking-widest px-3 py-2">{project.category}</span>
                 </div>
                 <div className="p-7">

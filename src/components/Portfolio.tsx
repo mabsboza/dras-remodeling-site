@@ -1,10 +1,10 @@
 import Image from 'next/image';
 
 const projects = [
-  ['Custom Kitchens', '/images/portafolio/kitchen.jpg'],
-  ['Inlay Bathrooms', '/images/portafolio/baths.jpeg'],
-  ['Belle & More', '/images/portafolio/homefull.jpeg'],
-  ['Flooring & More', '/images/portafolio/flooring.jpeg'],
+  ['Custom Kitchens', '/images/portafolio/kitchen.webp'],
+  ['Inlay Bathrooms', '/images/portafolio/baths.webp'],
+  ['Belle & More', '/images/portafolio/homefull.webp'],
+  ['Flooring & More', '/images/portafolio/flooring.webp'],
 ];
 
 export default function Portfolio() {
@@ -15,7 +15,7 @@ export default function Portfolio() {
         <div className="grid md:grid-cols-2 gap-7">
           {projects.map(([title,img]) => (
             <article key={title} className="card overflow-hidden">
-              <div className="relative h-80"><Image src={img} alt={title} fill className="object-cover" /></div>
+              <div className="relative h-80"><Image src={img} alt={title} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" /></div>
               <div className="p-6 flex justify-between items-center"><h3 className="font-display uppercase text-2xl">{title}</h3><a href="#contact" className="text-gold text-xs font-bold uppercase">Get Quote →</a></div>
             </article>
           ))}

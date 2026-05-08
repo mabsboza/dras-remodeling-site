@@ -28,12 +28,11 @@ export default function About() {
           "
         >
           <Image
-            src="/images/team/logo.png"
+            src="/images/team/team1.webp"
             alt="Odara Trade Group remodeling team"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-contain p-6 sm:p-10 lg:p-14"
-            priority
+            className="object-cover"
           />
         </div>
 
