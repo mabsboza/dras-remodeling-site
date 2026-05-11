@@ -14,7 +14,7 @@ export async function POST(request: Request) {
   }
 
   if (!process.env.RESEND_API_KEY || !process.env.CONTACT_TO_EMAIL) {
-    return NextResponse.redirect(new URL('/?contact=missing-env', request.url));
+    return NextResponse.redirect(new URL('/?contact=missing-env', request.url), 303);
   }
 
   const resend = new Resend(process.env.RESEND_API_KEY);
@@ -31,5 +31,5 @@ Service: ${service}
 ${message}`
   });
 
-  return NextResponse.redirect(new URL('/?contact=sent#contact', request.url));
+  return NextResponse.redirect(new URL('/?contact=sent#contact', request.url), 303);
 }
