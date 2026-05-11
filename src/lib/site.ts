@@ -2,7 +2,7 @@ export const site = {
   name: "O'Dara Trade Group",
   phone: '+1 678-832-8593',
   email: 'odaratradegroup@gmail.com',
-  address: 'EEUU',
+  address: 'North Georgia and surrounding communities',
   socials: { instagram: 'https://www.instagram.com/odaratradegroup', facebook: 'https://www.facebook.com/yuimaginewemake' }
 };
 
