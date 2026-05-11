@@ -1,7 +1,13 @@
 import { site } from '@/lib/site';
 import { FaWhatsapp } from 'react-icons/fa';
 
-export default function Contact() {
+type ContactStatus = 'sent' | 'missing-env';
+
+type ContactProps = {
+  status?: ContactStatus;
+};
+
+export default function Contact({ status }: ContactProps) {
   return (
     <section id="contact" className="py-24 bg-charcoal text-white">
       <div className="mx-auto max-w-7xl px-5 grid lg:grid-cols-[.8fr_1.2fr] gap-12">
@@ -33,6 +39,16 @@ export default function Contact() {
             </div>
         </div>
         <form action="/api/contact" method="POST" className="bg-white text-charcoal p-8 shadow-soft grid gap-4">
+          {status === 'sent' && (
+            <div role="status" className="border border-green-200 bg-green-50 px-4 py-3 text-sm font-semibold text-green-800">
+              Your message was sent successfully. We will contact you soon.
+            </div>
+          )}
+          {status === 'missing-env' && (
+            <div role="alert" className="border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-800">
+              We could not send your message right now. Please contact us by phone or WhatsApp.
+            </div>
+          )}
           <div className="grid md:grid-cols-2 gap-4"><input required name="name" placeholder="Full Name" className="border border-smoke px-4 py-3"/><input required name="email" type="email" placeholder="Email" className="border border-smoke px-4 py-3"/></div>
           <input name="phone" placeholder="Phone" className="border border-smoke px-4 py-3"/>
           <select name="service" className="border border-smoke px-4 py-3"><option>Kitchen Remodeling</option><option>Bathroom Remodeling</option><option>Full Home Renovation</option><option>Flooring & More</option></select>

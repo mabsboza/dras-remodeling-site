@@ -8,7 +8,15 @@ import Footer from '@/components/Footer';
 import TrustPanel from '@/components/TrustPanel';
 import WhyChooseUs from '@/components/WhyUs';
 
-export default function Home() {
+type PageProps = {
+  searchParams?: Promise<{
+    contact?: string;
+  }>;
+};
+
+export default async function Home({ searchParams }: PageProps) {
+  const contactStatus = (await searchParams)?.contact;
+
   return (
     <main>
       <Navbar />
@@ -18,7 +26,7 @@ export default function Home() {
       <About />
       <WhyChooseUs />
       <Portfolio />
-      <Contact />
+      <Contact status={contactStatus === 'sent' || contactStatus === 'missing-env' ? contactStatus : undefined} />
       <Footer />
     </main>
   );
