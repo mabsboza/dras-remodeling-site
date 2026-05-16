@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import ProjectGallery from '@/components/ProjectGallery';
 import { featuredProjects, services } from '@/lib/site';
 
 const categories = Array.from(new Set(featuredProjects.map((project) => project.category)));
@@ -42,7 +43,7 @@ export default function ServicesPage() {
       </section>
 
       <section id="projects" className="py-20 bg-white">
-        <div className="mx-auto max-w-7xl px-5">
+        <div className="mx-auto max-w-[92rem] px-5">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div>
               <p className="kicker">Portfolio Details</p>
@@ -53,26 +54,7 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          <div className="mt-12 grid gap-8 md:grid-cols-2">
-            {featuredProjects.map((project) => (
-              <article key={project.id} className="card grid md:grid-cols-[220px_1fr] overflow-hidden">
-                <div className="relative min-h-64 md:min-h-full">
-                  <Image src={project.image} alt={project.title} fill sizes="(min-width: 768px) 220px, 100vw" className="object-cover" />
-                  <span className="absolute left-4 top-4 bg-charcoal text-white text-[10px] font-bold uppercase tracking-widest px-3 py-2">{project.category}</span>
-                </div>
-                <div className="p-7">
-                  <p className="text-gold text-sm font-bold">Project #{project.id.toString().padStart(2, '0')}</p>
-                  <h3 className="mt-2 font-display text-3xl uppercase text-charcoal">{project.title}</h3>
-                  <p className="mt-4 text-sm leading-6 text-neutral-600">{project.summary}</p>
-                  <div className="mt-6 grid grid-cols-2 gap-3">
-                    {project.highlights.map((highlight) => (
-                      <div key={highlight} className="bg-[#f5f1ea] px-4 py-3 text-xs font-bold uppercase tracking-wide text-neutral-700">{highlight}</div>
-                    ))}
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
+          <ProjectGallery projects={featuredProjects} />
         </div>
       </section>
 

@@ -26,7 +26,7 @@ export default async function Home({ searchParams }: PageProps) {
       <About />
       <WhyChooseUs />
       <Portfolio />
-      <Contact status={contactStatus === 'sent' || contactStatus === 'missing-env' ? contactStatus : undefined} />
+      <Contact status={contactStatus === 'sent' || contactStatus === 'missing-env' || contactStatus === 'turnstile' ? contactStatus : undefined} />
       <Footer />
     </main>
   );

@@ -19,7 +19,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
         <h1 className="mt-4 font-display text-5xl md:text-7xl uppercase">Get In Touch</h1>
         <p className="mt-6 mx-auto max-w-2xl text-white/75">Tell us about your kitchen, bathroom, flooring or remodeling project and we’ll follow up with next steps.</p>
       </section>
-      <Contact status={contactStatus === 'sent' || contactStatus === 'missing-env' ? contactStatus : undefined} />
+      <Contact status={contactStatus === 'sent' || contactStatus === 'missing-env' || contactStatus === 'turnstile' ? contactStatus : undefined} />
       <Footer />
     </main>
   );

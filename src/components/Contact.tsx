@@ -1,15 +1,26 @@
 import { site } from '@/lib/site';
+import Script from 'next/script';
 import { FaWhatsapp } from 'react-icons/fa';
 
-type ContactStatus = 'sent' | 'missing-env';
+type ContactStatus = 'sent' | 'missing-env' | 'turnstile';
 
 type ContactProps = {
   status?: ContactStatus;
 };
 
 export default function Contact({ status }: ContactProps) {
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
   return (
     <section id="contact" className="py-24 bg-charcoal text-white">
+      {turnstileSiteKey && (
+        <Script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          strategy="afterInteractive"
+          async
+          defer
+        />
+      )}
       <div className="mx-auto max-w-7xl px-5 grid lg:grid-cols-[.8fr_1.2fr] gap-12">
         <div>
           <p className="kicker">Get In Touch</p>
@@ -49,10 +60,22 @@ export default function Contact({ status }: ContactProps) {
               We could not send your message right now. Please contact us by phone or WhatsApp.
             </div>
           )}
+          {status === 'turnstile' && (
+            <div role="alert" className="border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-800">
+              Please complete the security check and try again.
+            </div>
+          )}
           <div className="grid md:grid-cols-2 gap-4"><input required name="name" placeholder="Full Name" className="border border-smoke px-4 py-3"/><input required name="email" type="email" placeholder="Email" className="border border-smoke px-4 py-3"/></div>
           <input name="phone" placeholder="Phone" className="border border-smoke px-4 py-3"/>
           <select name="service" className="border border-smoke px-4 py-3"><option>Kitchen Remodeling</option><option>Bathroom Remodeling</option><option>Full Home Renovation</option><option>Flooring & More</option></select>
           <textarea required name="message" placeholder="Tell us about your project" rows={6} className="border border-smoke px-4 py-3" />
+          {turnstileSiteKey && (
+            <div
+              className="cf-turnstile min-h-[65px]"
+              data-sitekey={turnstileSiteKey}
+              data-theme="light"
+            />
+          )}
           <button className="gold-btn w-fit" type="submit">Request A Free Quote</button>
         </form>
       </div>
