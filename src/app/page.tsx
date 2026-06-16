@@ -7,6 +7,7 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import TrustPanel from '@/components/TrustPanel';
 import WhyChooseUs from '@/components/WhyUs';
+import Reviews from '@/components/Reviews';
 
 type PageProps = {
   searchParams?: Promise<{
@@ -26,6 +27,7 @@ export default async function Home({ searchParams }: PageProps) {
       <About />
       <WhyChooseUs />
       <Portfolio />
+      <Reviews />
       <Contact status={contactStatus === 'sent' || contactStatus === 'missing-env' || contactStatus === 'turnstile' ? contactStatus : undefined} />
       <Footer />
     </main>

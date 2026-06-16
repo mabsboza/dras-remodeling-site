@@ -13,7 +13,58 @@ export const services = [
   { slug: 'flooring', title: 'Flooring & More', image: '/images/floor/floor.webp', description: 'Hardwood, tile, laminate, trim, painting, repairs and finishing details.' }
 ];
 
-export const featuredProjects = [
+export type Review = {
+  rating: number;
+  comment: string;
+  name: string;
+  date: string;
+};
+
+export type FeaturedProject = {
+  id: number;
+  category: string;
+  title: string;
+  image: string;
+  images: string[];
+  summary: string;
+  highlights: string[];
+  reviews: Review[];
+};
+
+export const clientReviews: Review[] = [
+  {
+    rating: 5,
+    comment: 'Review ready to be replaced with this client feedback after approval.',
+    name: 'Homeowner Client',
+    date: 'Mar 14, 2026'
+  },
+  {
+    rating: 5,
+    comment: 'Review ready to be replaced with this client feedback after approval.',
+    name: 'Kitchen Remodel Client',
+    date: 'Feb 27, 2026'
+  },
+  {
+    rating: 5,
+    comment: 'Review ready to be replaced with this client feedback after approval.',
+    name: 'Bathroom Remodel Client',
+    date: 'Jan 31, 2026'
+  },
+  {
+    rating: 5,
+    comment: 'Review ready to be replaced with this client feedback after approval.',
+    name: 'Flooring Client',
+    date: 'Dec 12, 2025'
+  },
+  {
+    rating: 5,
+    comment: 'Review ready to be replaced with this client feedback after approval.',
+    name: 'Renovation Client',
+    date: 'Nov 18, 2025'
+  }
+];
+
+export const featuredProjects: FeaturedProject[] = [
   {
     id: 1,
     category: 'Kitchen',
@@ -27,7 +78,33 @@ export const featuredProjects = [
       '/images/portafolio/kitchen.jpg'
     ],
     summary: 'Full kitchen renovation with dark shaker cabinets, quartz counters, backsplash, lighting, and island upgrade.',
-    highlights: ['Custom cabinets', 'Quartz countertop', 'Large island', 'LED lighting']
+    highlights: ['Custom cabinets', 'Quartz countertop', 'Large island', 'LED lighting'],
+    reviews: [
+      {
+        rating: 5,
+        comment: 'Review ready to be replaced with this client feedback after approval.',
+        name: 'Kitchen Client',
+        date: 'Jan 12, 2026'
+      },
+      {
+        rating: 5,
+        comment: 'Review ready to be replaced with this client feedback after approval.',
+        name: 'Kitchen Client 2',
+        date: 'Jan 26, 2026'
+      },
+      {
+        rating: 5,
+        comment: 'Review ready to be replaced with this client feedback after approval.',
+        name: 'Kitchen Client 3',
+        date: 'Feb 9, 2026'
+      },
+      {
+        rating: 5,
+        comment: 'Review ready to be replaced with this client feedback after approval.',
+        name: 'Kitchen Client 4',
+        date: 'Feb 23, 2026'
+      }
+    ]
   },
   {
     id: 2,
@@ -41,7 +118,15 @@ export const featuredProjects = [
       '/images/portafolio/project-03-small-kitchen.webp'
     ],
     summary: 'High-end refresh focused on cabinetry, countertops, hardware, and a clean modern finish.',
-    highlights: ['Cabinet replacement', 'Countertop install', 'Hardware upgrade', 'Clean layout']
+    highlights: ['Cabinet replacement', 'Countertop install', 'Hardware upgrade', 'Clean layout'],
+    reviews: [
+      {
+        rating: 5,
+        comment: 'Review ready to be replaced with this client feedback after approval.',
+        name: 'Cabinet Refresh Client',
+        date: 'Dec 18, 2025'
+      }
+    ]
   },
   {
     id: 3,
@@ -55,7 +140,15 @@ export const featuredProjects = [
       '/images/kitchen/kitchen2.webp'
     ],
     summary: 'A compact kitchen redesigned to improve storage, workflow, and natural light.',
-    highlights: ['Storage planning', 'Backsplash', 'Paint', 'Lighting']
+    highlights: ['Storage planning', 'Backsplash', 'Paint', 'Lighting'],
+    reviews: [
+      {
+        rating: 5,
+        comment: 'Review ready to be replaced with this client feedback after approval.',
+        name: 'Kitchen Remodel Client',
+        date: 'Nov 7, 2025'
+      }
+    ]
   },
   {
     id: 4,
@@ -70,7 +163,15 @@ export const featuredProjects = [
       '/images/portafolio/project-05-guest-bath.webp'
     ],
     summary: 'Premium bathroom remodel with tile shower, glass enclosure, vanity, mirrors, and fixtures.',
-    highlights: ['Walk-in shower', 'Glass door', 'Tile work', 'Double vanity']
+    highlights: ['Walk-in shower', 'Glass door', 'Tile work', 'Double vanity'],
+    reviews: [
+      {
+        rating: 5,
+        comment: 'Review ready to be replaced with this client feedback after approval.',
+        name: 'Primary Bath Client',
+        date: 'Oct 21, 2025'
+      }
+    ]
   },
   {
     id: 5,
@@ -84,7 +185,15 @@ export const featuredProjects = [
       '/images/bath/bath1.webp'
     ],
     summary: 'Complete guest bath transformation with new flooring, vanity, paint, lighting, and trim details.',
-    highlights: ['New vanity', 'Floor tile', 'Wall finish', 'Modern fixtures']
+    highlights: ['New vanity', 'Floor tile', 'Wall finish', 'Modern fixtures'],
+    reviews: [
+      {
+        rating: 5,
+        comment: 'Review ready to be replaced with this client feedback after approval.',
+        name: 'Guest Bath Client',
+        date: 'Sep 15, 2025'
+      }
+    ]
   },
   {
     id: 6,
@@ -99,7 +208,15 @@ export const featuredProjects = [
       '/images/portafolio/project-05-guest-bath.webp'
     ],
     summary: 'Conversion from outdated tub to accessible shower with durable tile and modern plumbing fixtures.',
-    highlights: ['Demolition', 'Plumbing', 'Waterproofing', 'Tile installation']
+    highlights: ['Demolition', 'Plumbing', 'Waterproofing', 'Tile installation'],
+    reviews: [
+      {
+        rating: 5,
+        comment: 'Review ready to be replaced with this client feedback after approval.',
+        name: 'Shower Conversion Client',
+        date: 'Aug 28, 2025'
+      }
+    ]
   },
   {
     id: 7,
@@ -113,7 +230,15 @@ export const featuredProjects = [
       '/images/portafolio/homefull.webp'
     ],
     summary: 'Consistent flooring installation across living spaces to create a more elegant and cohesive home.',
-    highlights: ['Floor removal', 'Leveling', 'Installation', 'Baseboards']
+    highlights: ['Floor removal', 'Leveling', 'Installation', 'Baseboards'],
+    reviews: [
+      {
+        rating: 5,
+        comment: 'Review ready to be replaced with this client feedback after approval.',
+        name: 'Flooring Client',
+        date: 'Jul 30, 2025'
+      }
+    ]
   },
   {
     id: 8,
@@ -127,7 +252,15 @@ export const featuredProjects = [
       '/images/portafolio/homefull.webp'
     ],
     summary: 'Durable LVP flooring installation for high-traffic areas with precise cuts and finish trim.',
-    highlights: ['LVP install', 'Trim detail', 'Clean transitions', 'Durable finish']
+    highlights: ['LVP install', 'Trim detail', 'Clean transitions', 'Durable finish'],
+    reviews: [
+      {
+        rating: 5,
+        comment: 'Review ready to be replaced with this client feedback after approval.',
+        name: 'LVP Flooring Client',
+        date: 'Jun 19, 2025'
+      }
+    ]
   },
   {
     id: 9,
@@ -142,7 +275,15 @@ export const featuredProjects = [
       '/images/portafolio/project-08-lvp-flooring.webp'
     ],
     summary: 'Interior renovation focused on walls, flooring, lighting, paint, and modern room flow.',
-    highlights: ['Interior upgrades', 'Lighting', 'Paint', 'Open space feel']
+    highlights: ['Interior upgrades', 'Lighting', 'Paint', 'Open space feel'],
+    reviews: [
+      {
+        rating: 5,
+        comment: 'Review ready to be replaced with this client feedback after approval.',
+        name: 'Living Area Client',
+        date: 'May 11, 2025'
+      }
+    ]
   },
   {
     id: 10,
@@ -156,8 +297,14 @@ export const featuredProjects = [
       '/images/portafolio/flooring.webp'
     ],
     summary: 'Finishing project with repairs, paint, trim, and detail work to improve the final presentation.',
-    highlights: ['Drywall repair', 'Painting', 'Trim work', 'Final details']
+    highlights: ['Drywall repair', 'Painting', 'Trim work', 'Final details'],
+    reviews: [
+      {
+        rating: 5,
+        comment: 'Review ready to be replaced with this client feedback after approval.',
+        name: 'Finishing Details Client',
+        date: 'Apr 24, 2025'
+      }
+    ]
   }
 ];
-
-export type FeaturedProject = (typeof featuredProjects)[number];

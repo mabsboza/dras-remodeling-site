@@ -4,10 +4,36 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ProjectGallery from '@/components/ProjectGallery';
 import { featuredProjects, services } from '@/lib/site';
+import { formatReviewDate, getApprovedProjectReviews } from '@/lib/reviews';
 
 const categories = Array.from(new Set(featuredProjects.map((project) => project.category)));
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const approvedReviews = await getApprovedProjectReviews();
+  const approvedReviewsByProject = new Map<number, typeof featuredProjects[number]['reviews']>();
+
+  for (const review of approvedReviews) {
+    if (!review.project_id) continue;
+
+    const projectReviews = approvedReviewsByProject.get(review.project_id) || [];
+    projectReviews.push({
+      rating: review.rating,
+      comment: review.comment,
+      name: review.name,
+      date: formatReviewDate(review.created_at),
+    });
+    approvedReviewsByProject.set(review.project_id, projectReviews);
+  }
+
+  const projectsWithApprovedReviews = featuredProjects.map((project) => {
+    const projectReviews = approvedReviewsByProject.get(project.id);
+
+    return {
+      ...project,
+      reviews: projectReviews && projectReviews.length > 0 ? projectReviews : project.reviews,
+    };
+  });
+
   return (
     <main>
       <Navbar />
@@ -54,7 +80,7 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          <ProjectGallery projects={featuredProjects} />
+          <ProjectGallery projects={projectsWithApprovedReviews} />
         </div>
       </section>
 

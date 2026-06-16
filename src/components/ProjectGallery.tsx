@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight, Eye, Images, X } from 'lucide-react';
+import { CalendarDays, ChevronLeft, ChevronRight, Eye, Images, Star, X } from 'lucide-react';
 import type { FeaturedProject } from '@/lib/site';
 
 type ProjectGalleryProps = {
@@ -12,6 +12,7 @@ type ProjectGalleryProps = {
 type SelectedProject = {
   project: FeaturedProject;
   imageIndex: number;
+  reviewIndex: number;
 };
 
 export default function ProjectGallery({ projects }: ProjectGalleryProps) {
@@ -38,6 +39,27 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
   const showPreviousImage = () => {
     if (!selectedProject) return;
     showImage(selectedProject.imageIndex - 1);
+  };
+
+  const showReview = (reviewIndex: number) => {
+    setSelectedProject((current) => {
+      if (!current) return current;
+      const reviewCount = current.project.reviews.length;
+      return {
+        ...current,
+        reviewIndex: (reviewIndex + reviewCount) % reviewCount
+      };
+    });
+  };
+
+  const showNextReview = () => {
+    if (!selectedProject || selectedProject.project.reviews.length < 2) return;
+    showReview(selectedProject.reviewIndex + 1);
+  };
+
+  const showPreviousReview = () => {
+    if (!selectedProject || selectedProject.project.reviews.length < 2) return;
+    showReview(selectedProject.reviewIndex - 1);
   };
 
   useEffect(() => {
@@ -67,7 +89,7 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
               type="button"
               aria-label={`Open ${project.title} project gallery`}
               className="group relative block h-80 w-full overflow-hidden text-left md:h-96"
-              onClick={() => setSelectedProject({ project, imageIndex: 0 })}
+              onClick={() => setSelectedProject({ project, imageIndex: 0, reviewIndex: 0 })}
             >
               <Image
                 src={project.image}
@@ -95,7 +117,7 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
                 <button
                   type="button"
                   className="gold-btn shrink-0 gap-2 self-start"
-                  onClick={() => setSelectedProject({ project, imageIndex: 0 })}
+                  onClick={() => setSelectedProject({ project, imageIndex: 0, reviewIndex: 0 })}
                 >
                   <Eye aria-hidden="true" size={16} />
                   View Project
@@ -109,7 +131,7 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
                     type="button"
                     aria-label={`Open ${project.title} image ${imageIndex + 1}`}
                     className="relative aspect-[4/3] overflow-hidden bg-smoke"
-                    onClick={() => setSelectedProject({ project, imageIndex })}
+                    onClick={() => setSelectedProject({ project, imageIndex, reviewIndex: 0 })}
                   >
                     <Image
                       src={image}
@@ -225,6 +247,88 @@ export default function ProjectGallery({ projects }: ProjectGalleryProps) {
                   </div>
                 ))}
               </div>
+
+              <section className="mt-8 border-t border-smoke pt-6">
+                <div className="flex items-end justify-between gap-4">
+                  <div>
+                    <p className="kicker">Reviews</p>
+                    <h4 className="mt-2 font-display text-2xl uppercase text-charcoal">Client Feedback</h4>
+                  </div>
+                  <span className="text-xs font-bold uppercase tracking-widest text-neutral-400">
+                    {selectedProject.reviewIndex + 1} / {selectedProject.project.reviews.length}
+                  </span>
+                </div>
+
+                <div className="mt-5">
+                  <div className="overflow-hidden">
+                    <div
+                      className="flex transition-transform duration-300 ease-out"
+                      style={{ transform: `translateX(-${selectedProject.reviewIndex * 100}%)` }}
+                    >
+                      {selectedProject.project.reviews.map((review) => (
+                        <article key={`${review.name}-${review.date}`} className="w-full shrink-0 border border-smoke bg-[#f5f1ea] p-4">
+                          <div className="flex items-center justify-between gap-3">
+                            <div className="flex text-gold" aria-label={`${review.rating} out of 5 stars`}>
+                              {Array.from({ length: 5 }).map((_, starIndex) => (
+                                <Star
+                                  key={starIndex}
+                                  aria-hidden="true"
+                                  size={16}
+                                  className={starIndex < review.rating ? 'fill-current' : 'text-neutral-300'}
+                                />
+                              ))}
+                            </div>
+                            <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wide text-neutral-500">
+                              <CalendarDays aria-hidden="true" size={13} />
+                              {review.date}
+                            </span>
+                          </div>
+
+                          <p className="mt-4 text-sm leading-6 text-neutral-700">"{review.comment}"</p>
+                          <p className="mt-4 text-xs font-bold uppercase tracking-widest text-charcoal">{review.name}</p>
+                        </article>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-4 flex items-center justify-between gap-4">
+                    <button
+                      type="button"
+                      aria-label="Previous review"
+                      className="flex h-10 w-10 items-center justify-center border border-smoke text-charcoal transition hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-40"
+                      onClick={showPreviousReview}
+                      disabled={selectedProject.project.reviews.length < 2}
+                    >
+                      <ChevronLeft aria-hidden="true" size={20} />
+                    </button>
+
+                    <div className="flex items-center gap-2">
+                      {selectedProject.project.reviews.map((review, reviewIndex) => (
+                        <button
+                          key={`${review.name}-${review.date}-dot`}
+                          type="button"
+                          aria-label={`Show review ${reviewIndex + 1}`}
+                          className={`h-2.5 w-2.5 rounded-full transition ${
+                            reviewIndex === selectedProject.reviewIndex ? 'bg-gold' : 'bg-neutral-300 hover:bg-neutral-400'
+                          }`}
+                          onClick={() => showReview(reviewIndex)}
+                        />
+                      ))}
+                    </div>
+
+                    <button
+                      type="button"
+                      aria-label="Next review"
+                      className="flex h-10 w-10 items-center justify-center border border-smoke text-charcoal transition hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-40"
+                      onClick={showNextReview}
+                      disabled={selectedProject.project.reviews.length < 2}
+                    >
+                      <ChevronRight aria-hidden="true" size={20} />
+                    </button>
+                  </div>
+                </div>
+
+              </section>
             </aside>
           </div>
         </div>

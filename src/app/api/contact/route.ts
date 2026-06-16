@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { verifyTurnstileToken } from '@/lib/turnstile';
 
 type ContactStatus = 'sent' | 'missing-env' | 'turnstile';
 
@@ -26,46 +27,6 @@ function contactRedirect(request: Request, status: ContactStatus) {
   return NextResponse.redirect(redirectUrl, 303);
 }
 
-function getClientIp(request: Request) {
-  const forwardedFor = request.headers.get('x-forwarded-for');
-
-  return request.headers.get('cf-connecting-ip') || forwardedFor?.split(',')[0]?.trim();
-}
-
-async function verifyTurnstile(request: Request, token: string) {
-  const secret = process.env.TURNSTILE_SECRET_KEY;
-
-  if (!secret || !token) {
-    return false;
-  }
-
-  const body = new FormData();
-  body.append('secret', secret);
-  body.append('response', token);
-
-  const clientIp = getClientIp(request);
-  if (clientIp) {
-    body.append('remoteip', clientIp);
-  }
-
-  try {
-    const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-      method: 'POST',
-      body,
-    });
-
-    if (!response.ok) {
-      return false;
-    }
-
-    const outcome = (await response.json()) as { success?: boolean };
-
-    return outcome.success === true;
-  } catch {
-    return false;
-  }
-}
-
 export async function POST(request: Request) {
   const form = await request.formData();
   const name = String(form.get('name') || '');
@@ -83,7 +44,7 @@ export async function POST(request: Request) {
     return contactRedirect(request, 'missing-env');
   }
 
-  const turnstilePassed = await verifyTurnstile(request, turnstileToken);
+  const turnstilePassed = await verifyTurnstileToken(request, turnstileToken);
 
   if (!turnstilePassed) {
     return contactRedirect(request, 'turnstile');
