@@ -308,3 +308,19 @@ export const featuredProjects: FeaturedProject[] = [
     ]
   }
 ];
+
+export function getProjectFallbackReviews(project: FeaturedProject, minimum = 5): Review[] {
+  if (project.reviews.length >= minimum) {
+    return project.reviews;
+  }
+
+  const fallbackDates = ['Mar 14, 2026', 'Feb 27, 2026', 'Jan 31, 2026', 'Dec 12, 2025', 'Nov 18, 2025'];
+  const fallbackReviews = Array.from({ length: minimum - project.reviews.length }, (_, index) => ({
+    rating: 5,
+    comment: 'Review ready to be replaced with this client feedback after approval.',
+    name: `${project.category} Client ${project.reviews.length + index + 1}`,
+    date: fallbackDates[(project.reviews.length + index) % fallbackDates.length],
+  }));
+
+  return [...project.reviews, ...fallbackReviews];
+}
